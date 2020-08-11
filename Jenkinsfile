@@ -24,6 +24,42 @@ pipeline {
 			    	bat 'mvn sonar:sonar'
 			    }
             }
+        }	
+
+        stage ('Artifactory configuration') {
+            steps {
+                rtServer (
+                    id: "ARTIFACTORY_SERVER",
+                    url: "http://localhost:8082/ui/packages",
+
+                )
+
+                rtMavenDeployer (
+                    id: "MAVEN_DEPLOYER",
+                    serverId: "ARTIFACTORY_SERVER",
+                    releaseRepo: "jenkins-release",
+                    snapshotRepo: "jenkins-snapshot"
+                )
+
+                rtMavenResolver (
+                    id: "MAVEN_RESOLVER",
+                    serverId: "ARTIFACTORY_SERVER",
+                    releaseRepo: "jenkins-release",
+                    snapshotRepo: "jenkins-snapshot"
+                )
+            }
+        }
+
+        stage ('Build & Upload Artifact') {
+            steps {
+                rtMavenRun (
+                    tool: "maven", // Tool name from Jenkins configuration
+                    pom: 'pom.xml',
+                    goals: 'clean install -Dmaven.test.skip=true',
+                    deployerId: "MAVEN_DEPLOYER",
+                    resolverId: "MAVEN_RESOLVER"
+                )
+            }
         }		
 
     }
