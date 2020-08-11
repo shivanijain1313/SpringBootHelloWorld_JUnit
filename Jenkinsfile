@@ -30,9 +30,7 @@ pipeline {
             steps {
                 rtServer (
                     id: "ARTIFACTORY_SERVER",
-                    url: "http://localhost:8082/ui/packages",
-					credentialsId: 'admin.jfrog'
-
+                    url: "http://artifactory:8081/artifactory",
                 )
 
                 rtMavenDeployer (
