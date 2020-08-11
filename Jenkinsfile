@@ -21,7 +21,7 @@ pipeline {
                 echo 'Sonar Scanner'
                	//def scannerHome = tool 'SonarQube Scanner 3.0'
 			    withSonarQubeEnv('sonarqube') {
-			    	bat '${scannerHome}/bin/sonar-scanner.bat'
+			    	bat 'mvn sonar:sonar'
 			    }
             }
         }		
