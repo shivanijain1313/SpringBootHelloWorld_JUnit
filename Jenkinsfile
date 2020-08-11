@@ -31,7 +31,7 @@ pipeline {
                 rtServer (
                     id: "ARTIFACTORY_SERVER",
                     url: "http://localhost:8082/ui/packages",
-		    credentialsId: 'admin.jfrog'
+					credentialsId: 'admin.jfrog'
 
                 )
 
@@ -42,12 +42,6 @@ pipeline {
                     snapshotRepo: "jenkins-snapshot"
                 )
 
-                rtMavenResolver (
-                    id: "MAVEN_RESOLVER",
-                    serverId: "ARTIFACTORY_SERVER",
-                    releaseRepo: "jenkins-release",
-                    snapshotRepo: "jenkins-snapshot"
-                )
             }
         }
 
@@ -58,7 +52,6 @@ pipeline {
                     pom: 'pom.xml',
                     goals: 'clean install -Dmaven.test.skip=true',
                     deployerId: "MAVEN_DEPLOYER",
-                    resolverId: "MAVEN_RESOLVER"
                 )
             }
 			
