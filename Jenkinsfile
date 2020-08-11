@@ -26,43 +26,27 @@ pipeline {
             }
         }	
 
-        stage ('Artifactory configuration') {
+        stage ('Upload to Artifactory') {
             steps {
-                rtServer (
-                    id: 'ARTIFACTORY_SERVER',
-		    url: 'http://localhost:8081/artifactory',
-		    username: 'admin',
-                    password: 'password'
-                )
 
                 rtMavenDeployer (
-                    id: "MAVEN_DEPLOYER",
-                    serverId: "ARTIFACTORY_SERVER",
-                    releaseRepo: "jenkins-release",
-                    snapshotRepo: "jenkins-snapshot"
+                    id: 'MAVEN_DEPLOYER',
+                    serverId: 'ARTIFACTORY_SERVER',
+                    releaseRepo: 'jenkins-release',
+                    snapshotRepo: 'jenkins-snapshot'
                 )
 
-            }
-        }
-
-        stage ('Build & Upload Artifact') {
-            steps {
                 rtMavenRun (
-                    tool: "maven", // Tool name from Jenkins configuration
                     pom: 'pom.xml',
-                    goals: 'clean install -Dmaven.test.skip=true',
-                    deployerId: "MAVEN_DEPLOYER",
+                    goals: 'clean install',
+                    deployerId: 'MAVEN_DEPLOYER',
+                )
+				
+				rtPublishBuildInfo (
+                    serverId: 'ARTIFACTORY_SERVER'
                 )
             }
 			
 		}
-		
-        stage ('Publish build info') {
-            steps {
-                rtPublishBuildInfo (
-                    serverId: "ARTIFACTORY_SERVER"
-                )
-            }
-        }
     }
 }
