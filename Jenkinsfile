@@ -30,7 +30,7 @@ pipeline {
             steps {
                 rtServer (
                     id: "ARTIFACTORY_SERVER",
-                    url: "http://artifactory:8081/artifactory",
+                    url: "http://artifactory:8082/artifactory",
                 )
 
                 rtMavenDeployer (
