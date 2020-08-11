@@ -15,5 +15,16 @@ pipeline {
                 }
             }
         }
+		
+        stage('Sonar') {
+            steps {
+                echo 'Sonar Scanner'
+               	//def scannerHome = tool 'SonarQube Scanner 3.0'
+			    withSonarQubeEnv('Sonar Scanner') {
+			    	bat '${scannerHome}/bin/sonar-scanner.bat'
+			    }
+            }
+        }		
+
     }
 }
