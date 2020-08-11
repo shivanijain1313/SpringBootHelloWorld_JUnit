@@ -60,6 +60,14 @@ pipeline {
                     resolverId: "MAVEN_RESOLVER"
                 )
             }
+			
+        stage ('Publish build info') {
+            steps {
+                rtPublishBuildInfo (
+                    serverId: "ARTIFACTORY_SERVER"
+                )
+            }
+        }
         }		
 
     }
