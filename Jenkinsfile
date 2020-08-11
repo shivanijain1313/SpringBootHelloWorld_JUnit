@@ -31,6 +31,7 @@ pipeline {
                 rtServer (
                     id: "ARTIFACTORY_SERVER",
                     url: "http://localhost:8082/ui/packages",
+		    credentialsId: 'admin.jfrog'
 
                 )
 
