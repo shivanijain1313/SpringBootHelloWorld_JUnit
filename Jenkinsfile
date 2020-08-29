@@ -20,7 +20,7 @@ pipeline {
             steps {
                 echo 'Sonar Scanner'
                	//def scannerHome = tool 'SonarQube Scanner 3.0'
-			    withSonarQubeEnv('sonarqube') {
+			    withSonarQubeEnv('Test_Sonar') {
 			    	bat 'mvn sonar:sonar'
 			    }
             }
