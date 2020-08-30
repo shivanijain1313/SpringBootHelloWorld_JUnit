@@ -1,4 +1,5 @@
 pipeline {
+	def jarVersion = "1.0.${buildNo}"
     agent any
     tools {
         maven 'Maven3'
@@ -38,14 +39,12 @@ pipeline {
 
                 rtMavenRun (
                     pom: 'pom.xml',
-                    goals: 'clean install',
+                    goals: 'clean install -DreleaseVersion=' + jarVersion',
                     deployerId: 'MAVEN_DEPLOYER',
                 )
 				
 				rtPublishBuildInfo (
-                    serverId: 'ARTIFACTORY_SERVER',
-					buildName: 'test',
-                buildNumber: '12'
+                    serverId: 'ARTIFACTORY_SERVER'
                 )
             }
 			
