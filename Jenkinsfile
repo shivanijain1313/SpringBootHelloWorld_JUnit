@@ -33,7 +33,9 @@ pipeline {
                     id: 'MAVEN_DEPLOYER',
                     serverId: 'ARTIFACTORY_SERVER',
                     releaseRepo: 'jenkins-release',
-                    snapshotRepo: 'jenkins-snapshot'
+                    snapshotRepo: 'jenkins-snapshot''
+			buildName: 'holyFrog',
+    buildNumber: '42'
                 )
 
                 rtMavenRun (
@@ -43,9 +45,7 @@ pipeline {
                 )
 				
 				rtPublishBuildInfo (
-                    serverId: 'ARTIFACTORY_SERVER',
-					buildName: '${env.JOB_NAME}',
-                buildNumber: '${env.BUILD_NUMBER}'
+                    serverId: 'ARTIFACTORY_SERVER'
                 )
             }
 			
