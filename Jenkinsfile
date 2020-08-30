@@ -43,7 +43,9 @@ pipeline {
                 )
 				
 				rtPublishBuildInfo (
-                    serverId: 'ARTIFACTORY_SERVER'
+                    serverId: 'ARTIFACTORY_SERVER',
+					buildName: '${env.JOB_NAME}',
+                buildNumber: '${env.BUILD_NUMBER}'
                 )
             }
 			
