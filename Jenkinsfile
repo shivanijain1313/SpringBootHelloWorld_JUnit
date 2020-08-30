@@ -1,5 +1,5 @@
 pipeline {
-	def jarVersion = "1.0.${buildNo}"
+
     agent any
     tools {
         maven 'Maven3'
@@ -39,7 +39,7 @@ pipeline {
 
                 rtMavenRun (
                     pom: 'pom.xml',
-                    goals: 'clean install -DreleaseVersion=' + jarVersion,
+                    goals: 'clean install -DreleaseVersion=34',
                     deployerId: 'MAVEN_DEPLOYER',
                 )
 				
