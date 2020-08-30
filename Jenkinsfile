@@ -33,19 +33,19 @@ pipeline {
                     id: 'MAVEN_DEPLOYER',
                     serverId: 'ARTIFACTORY_SERVER',
                     releaseRepo: 'jenkins-release',
-                    snapshotRepo: 'jenkins-snapshot',
-			buildName: 'holyFrog',
-    buildNumber: '42'
+                    snapshotRepo: 'jenkins-snapshot'
                 )
 
                 rtMavenRun (
                     pom: 'pom.xml',
-                    goals: 'clean install -DuniqueVersion=false',
+                    goals: 'clean install',
                     deployerId: 'MAVEN_DEPLOYER',
                 )
 				
 				rtPublishBuildInfo (
-                    serverId: 'ARTIFACTORY_SERVER'
+                    serverId: 'ARTIFACTORY_SERVER',
+					buildName: 'test',
+                buildNumber: '12'
                 )
             }
 			
