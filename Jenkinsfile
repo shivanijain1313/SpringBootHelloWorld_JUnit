@@ -33,7 +33,7 @@ pipeline {
                     id: 'MAVEN_DEPLOYER',
                     serverId: 'ARTIFACTORY_SERVER',
                     releaseRepo: 'jenkins-release',
-                    snapshotRepo: 'jenkins-snapshot''
+                    snapshotRepo: 'jenkins-snapshot',
 			buildName: 'holyFrog',
     buildNumber: '42'
                 )
