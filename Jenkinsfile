@@ -49,5 +49,10 @@ pipeline {
             }
 			
 		}
+	    				        stage('Docker Image') {
+            steps {
+                  sh '/bin/docker build -t i_shivanijain01_master --no-cache -f Dockerfile .'
+			    }
+            }
     }
 }
