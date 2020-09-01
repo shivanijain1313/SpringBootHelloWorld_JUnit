@@ -5,6 +5,11 @@ pipeline {
         maven 'Maven3'
         jdk 'jdk8'
     }
+	
+	environment {
+		USERNAME = 'shivanijain01'
+		DB_ENGINE    = 'sqlite'
+    }
     stages {
         stage ('Build') {
             steps {
@@ -51,7 +56,7 @@ pipeline {
 		}
 	    				        stage('Docker Image') {
             steps {
-                  bat 'docker build -t i_shivanijain01_master --no-cache -f Dockerfile .'
+		    bat 'docker build -t i_${USERNAME}_{BRANCH_NAME} --no-cache -f Dockerfile .'
 			    }
             }
     }
