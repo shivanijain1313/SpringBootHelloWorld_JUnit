@@ -56,7 +56,7 @@ pipeline {
 		}
 	    				        stage('Docker Image') {
             steps {
-		    bat "docker build -t i_${USERNAME}_{BRANCH_NAME} --no-cache -f Dockerfile ."
+		    bat 'docker build -t i_${USERNAME} --no-cache -f Dockerfile .'
 			    }
             }
     }
