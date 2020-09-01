@@ -7,7 +7,7 @@ pipeline {
     }
 	
 	environment {
-		USERNAME = 'shivanijain01'
+		username = 'shivanijain01'
 		DB_ENGINE    = 'sqlite'
     }
     stages {
@@ -56,7 +56,7 @@ pipeline {
 		}
 	    				        stage('Docker Image') {
             steps {
-		    bat 'docker build -t i_${USERNAME} --no-cache -f Dockerfile .'
+		    bat 'docker build -t i_${username} --no-cache -f Dockerfile .'
 			    }
             }
     }
