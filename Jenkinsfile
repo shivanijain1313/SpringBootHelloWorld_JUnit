@@ -13,6 +13,7 @@ pipeline {
     stages {
         stage ('Build') {
             steps {
+		 echo 'Pulling...' + env.BRANCH_NAME
                 bat 'mvn clean install' 
             }
             post {
