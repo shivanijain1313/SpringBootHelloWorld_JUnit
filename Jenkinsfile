@@ -56,7 +56,7 @@ pipeline {
 		}
 	    				        stage('Docker Image') {
             steps {
-		    bat 'docker build -t i_shivanijain_%BRANCH_NAME%:%BUILD_NUMBER% --no-cache -f Dockerfile .'
+		    bat 'docker build -t i_shivanijain_%JOB_NAME%:%BUILD_NUMBER% --no-cache -f Dockerfile .'
 			    }
             }
     }
