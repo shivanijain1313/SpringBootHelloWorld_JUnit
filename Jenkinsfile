@@ -35,14 +35,8 @@ pipeline {
 
 		stage('Pre Container Check') {
 			steps {
-				bat '''
-				$containerId = docker ps -q -f name=c_shivanijain01_develop
-                    if ($containerId){
-		     docker container stop c_shivani
- docker container rm c_shivani
-		    }
-                   
-                    '''
+				powershell(returnStatus: true, script: 'test')
+                    
 			}
 		}
 	    				        stage('Docker Image') {
