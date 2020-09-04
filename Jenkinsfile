@@ -36,7 +36,8 @@ pipeline {
 		stage('Pre Container Check') {
 			steps {
 				bat '''
-                    if [ "$(docker ps -q -f name=c_shivanijain01_develop)" ]
+				$containerId = docker ps -q -f name=c_shivanijain01_develop
+                    if ($containerId)
                     then
                         docker container stop c_shivanijain01_develop
                         docker container rm c_shivanijain01_develop
