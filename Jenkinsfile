@@ -33,27 +33,16 @@ pipeline {
             }
         }	
 
-        stage ('Upload to Artifactory') {
-            steps {
-
-                rtMavenDeployer (
-                    id: 'MAVEN_DEPLOYER',
-                    serverId: 'ARTIFACTORY_SERVER',
-                    releaseRepo: 'jenkins-release',
-                    snapshotRepo: 'jenkins-snapshot'
-                )
-
-                rtMavenRun (
-                    pom: 'pom.xml',
-                    goals: 'install -DgeneratePom=false -DuniqueVersion=false',
-                    deployerId: 'MAVEN_DEPLOYER',
-                )
-				
-				rtPublishBuildInfo (
-                    serverId: 'ARTIFACTORY_SERVER'
-                )
-            }
-			
+		stage('Pre Container Check') {
+			steps {
+				bat '''
+                    if [ "$(docker ps -q -f name=c_shivanijain01_develop)" ]
+                    then
+                        docker container stop c_shivanijain01_develop
+                        docker container rm c_shivanijain01_develop
+                    fi
+                    '''
+			}
 		}
 	    				        stage('Docker Image') {
             steps {
