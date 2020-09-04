@@ -13,6 +13,7 @@ pipeline {
     stages {
         stage ('Build') {
             steps {
+		    checkout scm
 		    echo 'Pulling...' + "${env.BRANCH_NAME}"
                 bat 'mvn clean install' 
             }
