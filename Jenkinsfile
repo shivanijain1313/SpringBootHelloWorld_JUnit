@@ -23,7 +23,7 @@ pipeline {
         stage ('Build') {
             steps {
 		    checkout scm
-		    echo 'Pulling...'+  %GIT_BRANCH%
+		    echo 'Pulling...'+   ${env.GIT_BRANCH}
                 bat 'mvn clean install' 
             }
             post {
