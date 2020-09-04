@@ -11,6 +11,15 @@ pipeline {
 		DB_ENGINE    = 'sqlite'
     }
     stages {
+	          stage("Start") {
+            steps {
+                //Initial message
+                echo "Deployment Pipeline started for - ${BRANCH_NAME} Branch"
+                checkout scm
+
+           }
+        }
+
         stage ('Build') {
             steps {
 		    checkout scm
