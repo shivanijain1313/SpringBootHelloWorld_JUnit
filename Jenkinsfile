@@ -11,19 +11,9 @@ pipeline {
 		DB_ENGINE    = 'sqlite'
     }
     stages {
-	          stage("Start") {
-            steps {
-                //Initial message
-             
-                checkout scm
-
-           }
-        }
 
         stage ('Build') {
             steps {
-		    checkout scm
-		    echo 'Pulling...'+   ${env.GIT_BRANCH}
                 bat 'mvn clean install' 
             }
             post {
@@ -45,7 +35,7 @@ pipeline {
 
 	    				        stage('Docker Image') {
             steps {
-		    bat 'docker build -t i_%BRANCH_NAME%:%BUILD_NUMBER% --no-cache -f Dockerfile .'
+		    bat 'docker build -t i_%BRANCH%:%BUILD_NUMBER% --no-cache -f Dockerfile .'
 			    }
             }
     }
