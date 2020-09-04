@@ -37,11 +37,11 @@ pipeline {
 			steps {
 				bat '''
 				$containerId = docker ps -q -f name=c_shivanijain01_develop
-                    if ($containerId)
-                    then
-                        docker container stop c_shivanijain01_develop
-                        docker container rm c_shivanijain01_develop
-                    fi
+                    if ($containerId){
+		     docker container stop c_shivani
+ docker container rm c_shivani
+		    }
+                   
                     '''
 			}
 		}
