@@ -35,7 +35,14 @@ pipeline {
 
 		stage('Pre Container Check') {
 			steps {
-				powershell(returnStatus: true, script: 'test')
+				powershell(returnStdout: true, script: '''
+$location = docker ps -q -f name=c_shivani
+if($location)
+{
+ docker container stop c_shivani
+ docker container rm c_shivani
+}
+    ''')
                     
 			}
 		}
