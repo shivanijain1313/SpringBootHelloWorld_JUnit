@@ -34,22 +34,9 @@ pipeline {
             }
         }	
 
-		stage('Pre Container Check') {
-			steps {
-				powershell(returnStdout: true, script: '''
-$location = docker ps -q -f name=c_shivani
-if($location)
-{
- docker container stop c_shivani
- docker container rm c_shivani
-}
-    ''')
-                    
-			}
-		}
 	    				        stage('Docker Image') {
             steps {
-		    bat 'docker build -t i_%USER_NAME%:%BUILD_NUMBER% --no-cache -f Dockerfile .'
+		    bat 'docker build -t i_%BRANCH_NAME%:%BUILD_NUMBER% --no-cache -f Dockerfile .'
 			    }
             }
     }
