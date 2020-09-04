@@ -14,7 +14,7 @@ pipeline {
 	          stage("Start") {
             steps {
                 //Initial message
-                echo "Deployment Pipeline started for - ${BRANCH_NAME} Branch"
+             
                 checkout scm
 
            }
@@ -23,7 +23,7 @@ pipeline {
         stage ('Build') {
             steps {
 		    checkout scm
-		    echo 'Pulling...%BRANCH_NAME%'
+		    echo 'Pulling...'+ ${BRANCH_NAME}
                 bat 'mvn clean install' 
             }
             post {
